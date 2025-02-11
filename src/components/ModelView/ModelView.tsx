@@ -10,17 +10,12 @@ export type ModelViewProps = {
 };
 const ModelView: FC<ModelViewProps> = ({ data, loading = false }) => {
   return (
-    <Canvas>
-      {loading && <Spin />}
-      <Scene>
-        {data && (
-          <BufferBox
-            // rotation={[Math.PI / 6, Math.PI / 6.6, 0]}
-            points={data}
-          ></BufferBox>
-        )}
-      </Scene>
-    </Canvas>
+    <>
+      {loading && <Spin size='large' fullscreen />}
+      <Canvas>
+        <Scene>{data && <BufferBox points={data}></BufferBox>}</Scene>
+      </Canvas>
+    </>
   );
 };
 

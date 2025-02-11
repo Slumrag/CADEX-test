@@ -8,11 +8,19 @@ import { useForm } from 'antd/es/form/Form';
 function App() {
   const [geometryData, setGeometryData] = useState<Float32Array>();
   const [form] = useForm();
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
-    const res = await getBufferGeometry(form.getFieldsValue());
-    const points = new Float32Array(res);
-    setGeometryData(points);
+    try {
+      setLoading(true);
+      const res = await getBufferGeometry(form.getFieldsValue());
+      const points = new Float32Array(res);
+      setGeometryData(points);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
   useEffect(() => {
     fetchData();
@@ -32,7 +40,7 @@ function App() {
           />
         </Col>
         <Col flex={1}>
-          <ModelView data={geometryData} />
+          <ModelView loading={loading} data={geometryData} />
         </Col>
       </Row>
     </Layout>
