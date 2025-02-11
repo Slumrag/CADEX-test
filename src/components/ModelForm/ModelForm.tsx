@@ -1,22 +1,30 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, FormInstance, InputNumber } from 'antd';
 import React, { FC } from 'react';
+export type Values = {
+  height: number;
+  width: number;
+  length: number;
+};
+export type ModelFormProps = {
+  form: FormInstance;
+  initialValues?: Values;
+  onSubmit: (values: Values) => void;
+};
 
-type ModelFormProps = {};
-
-const ModelForm: FC<ModelFormProps> = () => {
+const ModelForm: FC<ModelFormProps> = ({ form, initialValues, onSubmit }) => {
   return (
-    <Form>
-      <Form.Item label='length' name={'length'}>
-        <Input />
+    <Form form={form} onFinish={onSubmit} initialValues={initialValues}>
+      <Form.Item label='height' name={'height'}>
+        <InputNumber min={0} />
       </Form.Item>
       <Form.Item label='width' name={'width'}>
-        <Input />
+        <InputNumber min={0} />
       </Form.Item>
-      <Form.Item label='height' name={'height'}>
-        <Input />
+      <Form.Item label='length' name={'length'}>
+        <InputNumber min={0} />
       </Form.Item>
       <Form.Item>
-        <Button htmlType='submit'>send</Button>
+        <Button htmlType='submit'>Calculate</Button>
       </Form.Item>
     </Form>
   );
