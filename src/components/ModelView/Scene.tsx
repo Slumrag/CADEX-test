@@ -1,5 +1,5 @@
 import { CameraControls } from '@react-three/drei';
-import React, { FC, PropsWithChildren, useEffect, useRef } from 'react';
+import { FC, PropsWithChildren, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 export const Scene: FC<PropsWithChildren> = ({ children }) => {

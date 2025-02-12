@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Spin } from 'antd';
 import { Scene } from './Scene';
 import { BufferBox } from './BufferBox';

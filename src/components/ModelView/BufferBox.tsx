@@ -1,5 +1,5 @@
 import { ThreeElements } from '@react-three/fiber';
-import React, { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 export const BufferBox: FC<ThreeElements['mesh'] & { points: Float32Array }> = ({
   points,

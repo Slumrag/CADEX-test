@@ -1,5 +1,5 @@
 import { Button, Form, FormInstance, InputNumber } from 'antd';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import classes from './ModelForm.module.css';
 
 export type Values = {
