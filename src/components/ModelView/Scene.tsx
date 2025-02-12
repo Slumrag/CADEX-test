@@ -15,8 +15,6 @@ export const Scene: FC<PropsWithChildren> = ({ children }) => {
       const children = childrenRef.current;
       const camera = cameraControlsRef.current;
       const mesh = children.children[0]?.getObjectByName('box') as THREE.Mesh;
-      console.log(children.children[0]);
-      console.log('mesh', mesh);
 
       let boundingBox = mesh.geometry.boundingBox;
       if (boundingBox === null) {
