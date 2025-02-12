@@ -10,13 +10,19 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 
   const boxDims: Values = { length: Number(length), width: Number(width), height: Number(height) };
 
-  if (!boxDims.length || !boxDims.width || !boxDims.height) {
-    res.status(400).statusMessage = 'Incorrect dimensions';
+  if (Number.isNaN(boxDims.length) || Number.isNaN(boxDims.width) || Number.isNaN(boxDims.height)) {
+    res.status(400);
+    res.statusMessage = 'invalid dimensions';
     return res;
   }
+  try {
+    const geometry = getBufferGeometry(boxDims);
+    return res.json(geometry);
+  } catch {
+    res.status(500);
 
-  const geometry = getBufferGeometry(boxDims);
-  return res.json(geometry);
+    return res;
+  }
 }
 
 function getBufferGeometry({ height, width, length }: Values) {
