@@ -1,0 +1,16 @@
+.model-form .ant-input-number-status-error {
+  /* display: none !important; */
+  background-color: black;
+}
+.model-form__input {
+  border-radius: 0;
+  width: 100%;
+}
+
+.model-form__input:focus-within {
+  box-shadow: inset 0px 0px 5px darkgrey;
+}
+.model-form__input:hover,
+.model-form__input:focus-within {
+  border-color: green;
+}
