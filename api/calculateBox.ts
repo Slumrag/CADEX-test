@@ -12,16 +12,23 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 
   if (Number.isNaN(boxDims.length) || Number.isNaN(boxDims.width) || Number.isNaN(boxDims.height)) {
     res.status(400);
-    res.statusMessage = 'invalid dimensions';
-    return res;
+    return res.json({ message: 'invalid dimensions. Dimensions must be numeric positive values' });
   }
+
+  if (boxDims.length <= 0 || boxDims.width <= 0 || boxDims.height <= 0) {
+    res.status(400);
+    return res.json({
+      message: 'One of dimensions is non positive. All dimensions must be greater then 0.',
+    });
+  }
+
   try {
     const geometry = getBufferGeometry(boxDims);
     return res.json(geometry);
   } catch {
     res.status(500);
 
-    return res;
+    return res.json({ message: 'Server error' });
   }
 }
 
