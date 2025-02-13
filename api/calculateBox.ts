@@ -36,7 +36,7 @@ function getBufferGeometry({ height, width, length }: Values) {
     [halfLength, halfWidth, -halfHeight], //2
     [-halfLength, halfWidth, -halfHeight], //3
     // //top
-    [-halfLength, -halfWidth, -halfHeight], //4
+    [-halfLength, -halfWidth, halfHeight], //4
     [halfLength, -halfWidth, halfHeight], //5
     [halfLength, halfWidth, halfHeight], //6
     [-halfLength, halfWidth, halfHeight], //7
