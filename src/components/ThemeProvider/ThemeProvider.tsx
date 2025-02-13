@@ -1,8 +1,7 @@
+import { ColorScheme, ColorSchemeContext } from '@/hooks/useColorScheme';
 import { MoonOutlined, SunOutlined } from '@ant-design/icons';
 import { ConfigProvider, FloatButton, theme } from 'antd';
 import { FC, PropsWithChildren, useEffect, useState } from 'react';
-
-type ColorScheme = 'light' | 'dark';
 
 const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>();
@@ -32,18 +31,20 @@ const ThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [colorScheme]);
 
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: colorScheme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm,
-      }}
-    >
-      <FloatButton
-        style={{ top: 32 }}
-        icon={colorScheme === 'dark' ? <SunOutlined /> : <MoonOutlined />}
-        onClick={handleClick}
-      ></FloatButton>
-      {children}
-    </ConfigProvider>
+    <ColorSchemeContext.Provider value={colorScheme!}>
+      <ConfigProvider
+        theme={{
+          algorithm: colorScheme === 'light' ? theme.defaultAlgorithm : theme.darkAlgorithm,
+        }}
+      >
+        <FloatButton
+          style={{ top: 32 }}
+          icon={colorScheme === 'dark' ? <SunOutlined /> : <MoonOutlined />}
+          onClick={handleClick}
+        ></FloatButton>
+        {children}
+      </ConfigProvider>
+    </ColorSchemeContext.Provider>
   );
 };
 
