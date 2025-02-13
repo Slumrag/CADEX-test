@@ -1,4 +1,4 @@
-type Values = {
+export type Values = {
   height: number;
   width: number;
   length: number;
