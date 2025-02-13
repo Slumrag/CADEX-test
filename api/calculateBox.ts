@@ -26,16 +26,20 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 }
 
 function getBufferGeometry({ height, width, length }: Values) {
+  const halfLength = length / 2;
+  const halfWidth = width / 2;
+  const halfHeight = height / 2;
+
   const points = [
-    [0, 0, 0], //0
-    [length, 0, 0], //1
-    [length, width, 0], //2
-    [0, width, 0], //3
+    [-halfLength, -halfWidth, -halfHeight], //0
+    [halfLength, -halfWidth, -halfHeight], //1
+    [halfLength, halfWidth, -halfHeight], //2
+    [-halfLength, halfWidth, -halfHeight], //3
     // //top
-    [0, 0, height], //4
-    [length, 0, height], //5
-    [length, width, height], //6
-    [0, width, height], //7
+    [-halfLength, -halfWidth, -halfHeight], //4
+    [halfLength, -halfWidth, halfHeight], //5
+    [halfLength, halfWidth, halfHeight], //6
+    [-halfLength, halfWidth, halfHeight], //7
   ];
   const getVertex = (indexes: number[]) => {
     const vertex: number[][] = [];
