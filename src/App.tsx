@@ -4,6 +4,7 @@ import ModelView from '@/components/ModelView';
 import { useEffect, useState } from 'react';
 import { getBufferGeometry } from '@/api/getBufferGeometry';
 import { useForm } from 'antd/es/form/Form';
+import ThemeProvider from './components/ThemeProvider';
 
 function App() {
   const [geometryData, setGeometryData] = useState<Float32Array>();
@@ -26,24 +27,26 @@ function App() {
     fetchData();
   }, []);
   return (
-    <Layout style={{ height: '100vh', padding: '0 16px', justifyContent: 'start' }}>
-      <Row gutter={[16, 8]} style={{ height: '100%' }} wrap={false}>
-        <Col style={{ alignSelf: 'center' }}>
-          <ModelForm
-            form={form}
-            initialValues={{
-              height: 200,
-              width: 100,
-              length: 150,
-            }}
-            onSubmit={() => fetchData()}
-          />
-        </Col>
-        <Col flex={1}>
-          <ModelView loading={loading} data={geometryData} />
-        </Col>
-      </Row>
-    </Layout>
+    <ThemeProvider>
+      <Layout style={{ height: '100vh', padding: '0 16px', justifyContent: 'start' }}>
+        <Row gutter={[16, 8]} style={{ height: '100%' }} wrap={false}>
+          <Col style={{ alignSelf: 'center' }}>
+            <ModelForm
+              form={form}
+              initialValues={{
+                height: 200,
+                width: 100,
+                length: 150,
+              }}
+              onSubmit={() => fetchData()}
+            />
+          </Col>
+          <Col flex={1}>
+            <ModelView loading={loading} data={geometryData} />
+          </Col>
+        </Row>
+      </Layout>
+    </ThemeProvider>
   );
 }
 
