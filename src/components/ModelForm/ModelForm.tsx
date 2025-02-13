@@ -1,6 +1,7 @@
-import { Button, Form, FormInstance, InputNumber } from 'antd';
+import { Button, Form, FormInstance, Input, InputNumber } from 'antd';
 import { FC } from 'react';
 import classes from './ModelForm.module.css';
+import { Rule } from 'antd/es/form';
 
 export type Values = {
   height: number;
@@ -15,6 +16,14 @@ export type ModelFormProps = {
 };
 
 const ModelForm: FC<ModelFormProps> = ({ form, initialValues, onSubmit }) => {
+  const rules: Rule[] = [
+    { required: true },
+    {
+      validator: (_, value: number) => {
+        return value > 0 ? Promise.resolve() : Promise.reject(new Error('Value must be positive'));
+      },
+    },
+  ];
   return (
     <Form
       form={form}
@@ -24,13 +33,13 @@ const ModelForm: FC<ModelFormProps> = ({ form, initialValues, onSubmit }) => {
       className={classes['model-form']}
       requiredMark={false}
     >
-      <Form.Item label='height' name={'height'} rules={[{ required: true }]}>
+      <Form.Item label='height' name={'height'} rules={rules}>
+        <Input min={0} className={classes['model-form__input']} />
+      </Form.Item>
+      <Form.Item label='width' name={'width'} rules={rules}>
         <InputNumber min={0} className={classes['model-form__input']} />
       </Form.Item>
-      <Form.Item label='width' name={'width'} rules={[{ required: true }]}>
-        <InputNumber min={0} className={classes['model-form__input']} />
-      </Form.Item>
-      <Form.Item label='length' name={'length'} rules={[{ required: true }]}>
+      <Form.Item label='length' name={'length'} rules={rules}>
         <InputNumber min={0} className={classes['model-form__input']} />
       </Form.Item>
       <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
