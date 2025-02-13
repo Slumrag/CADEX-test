@@ -3,7 +3,6 @@ import { FC, PropsWithChildren, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 export const Scene: FC<PropsWithChildren> = ({ children }) => {
-  // const { camera, scene } = useThree();
   const cameraControlsRef = useRef<CameraControls>(null!);
   const childrenRef = useRef<THREE.Group>(null!);
 
@@ -31,10 +30,11 @@ export const Scene: FC<PropsWithChildren> = ({ children }) => {
     <>
       <CameraControls ref={cameraControlsRef} />
       <axesHelper args={[3]}></axesHelper>
-      {/* <cameraHelper args={[camera]}></cameraHelper> */}
       <ambientLight intensity={Math.PI / 4} />
       <directionalLight position={[1, 1, 1]} />
-      <group ref={childrenRef}>{children}</group>
+      <group rotation={[Math.PI / 2, 0, -Math.PI / 2, 'XYZ']} ref={childrenRef}>
+        {children}
+      </group>
     </>
   );
 };

@@ -10,23 +10,8 @@ export const BufferBox: FC<ThreeElements['mesh'] & { points: Float32Array }> = (
   useEffect(() => {
     if (ref.current) {
       const group = ref.current;
-      const groupCenter = new THREE.Vector3();
-      const currentPos = new THREE.Vector3();
-      const worldOrigin = new THREE.Vector3(0, 0, 0);
-
       const mesh = group.getObjectByName('box') as THREE.Mesh;
       mesh?.geometry.computeVertexNormals();
-      mesh?.geometry.computeBoundingBox();
-      mesh?.geometry.boundingBox?.getCenter(groupCenter);
-      group.getWorldPosition(currentPos);
-      currentPos.add(groupCenter);
-      const distToOrigin = worldOrigin.distanceTo(currentPos);
-
-      if (distToOrigin > 1e-2) {
-        group.translateX(-currentPos.x);
-        group.translateY(-currentPos.y);
-        group.translateZ(-currentPos.z);
-      }
     }
   }, [points]);
   const colorScheme = useColorScheme();
