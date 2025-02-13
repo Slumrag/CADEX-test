@@ -1,16 +1,19 @@
-.model-form .ant-input-number-status-error {
-  /* display: none !important; */
-  background-color: black;
-}
 .model-form__input {
   border-radius: 0;
   width: 100%;
 }
-
+.model-form__submit {
+  border-radius: 0;
+  background: #642ab5;
+  color: #ffffff;
+}
+.model-form__submit:not(:disabled):hover {
+  background: #4c2089 !important;
+}
 .model-form__input:focus-within {
-  box-shadow: inset 0px 0px 5px darkgrey;
+  box-shadow: inset 0px 0px 5px #642ab5;
 }
 .model-form__input:hover,
 .model-form__input:focus-within {
-  border-color: green;
+  border-color: #642ab5;
 }

@@ -43,7 +43,7 @@ const ModelForm: FC<ModelFormProps> = ({ form, initialValues, onSubmit }) => {
         <InputNumber min={0} className={classes['model-form__input']} />
       </Form.Item>
       <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button htmlType='submit' type='primary'>
+        <Button htmlType='submit' type='primary' className={classes['model-form__submit']}>
           Calculate
         </Button>
       </Form.Item>
