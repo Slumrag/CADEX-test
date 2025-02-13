@@ -27,7 +27,7 @@ const ModelView: FC<ModelViewProps> = ({ data, loading = false }) => {
           <Spin size='large' />
         </Flex>
       )}
-      <Canvas>
+      <Canvas camera={{ far: 100_000 }}>
         <Scene>{data && <BufferBox points={data}></BufferBox>}</Scene>
       </Canvas>
     </>
